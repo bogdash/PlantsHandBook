@@ -12,7 +12,7 @@ import com.example.plantshandbook.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     private var adapter = PlantAdapter()
-    private var editLauncher: ActivityResultLauncher<Intent>? = null
+    private lateinit var editLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,12 +26,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun init(){
+    private fun init() {
         binding.apply {
             rcView.layoutManager = GridLayoutManager(this@MainActivity, 3)
             rcView.adapter = adapter
             buttonAdd.setOnClickListener{
-                editLauncher?.launch(Intent(this@MainActivity, EditActivity::class.java))
+                editLauncher.launch(Intent(this@MainActivity, EditActivity::class.java))
             }
         }
     }
